@@ -7,19 +7,25 @@
     "optimize-autoloader": true,
     "sort-packages": true,
     "discard-changes": true,
-    "process-timeout": 0
+    "process-timeout": 0,
+    "allow-plugins": {
+      "symfony/flex": true
+    }
   },
   "prefer-stable": true,
   "minimum-stability": "dev",
   "require": {
+    "doctrine/orm": "*",
     "hwi/oauth-bundle": "^1.2.0",
     "php-http/guzzle7-adapter": "^0.1.1",
     "php-http/httplug-bundle": "^1",
     "pimcore/customer-management-framework-bundle": "^3.3.0",
+    "pimcore/data-hub": "^1.0",
+    "pimcore/payment-provider-paypal-smart-payment-button": "^1.0",
     "pimcore/pimcore": "^10.5",
     "pimcore/web2print-tools-bundle": "^4.0",
-    "pimcore/data-hub": "^1.0",
-    "pimcore/payment-provider-paypal-smart-payment-button": "^1.0"
+    "symfony/flex": "^2.2",
+    "symfony/webpack-encore-bundle": "^1.16"
   },
   "conflict": {
     "hwi/oauth-bundle": "1.4.0"
@@ -48,7 +54,11 @@
     "pimcore-scripts": [
       "Pimcore\\Composer::clearCache",
       "Pimcore\\Composer::installAssets"
-    ]
+    ],
+    "auto-scripts": {
+      "cache:clear": "symfony-cmd",
+      "assets:install %PUBLIC_DIR%": "symfony-cmd"
+    }
   },
   "repositories": {
     "dev": {
